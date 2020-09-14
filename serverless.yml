@@ -1,0 +1,21 @@
+
+service: api-keys
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: curso-sls
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+
+  apiKeys:
+    - ${file(./config.${self:provider.stage}.json):API_KEY}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: get
+          private: true
