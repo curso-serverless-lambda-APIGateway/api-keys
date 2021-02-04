@@ -4,7 +4,7 @@
 
 2. En el archivo **serverless.yml** añadimos en la entrada *provider* inicializamos las variables profile, stage y región. Además añadimos ua nueva entrada llamada apiKeys que hará referencia a un archivo json de configuración por cada entorno:
 
-~~~
+~~~yml
 provider:
   name: aws
   runtime: nodejs12.x
@@ -18,13 +18,13 @@ provider:
 
 3. Creamos tantos archivos de configuración como entornos que queramos configurar. En nuestro caso de ejemplo crearemos uno para *dev* y otro para *qa*:
 
-~~~
+~~~json
 {
   "API_KEY": "API_KEY_DEV"
 }
 ~~~
 
-~~~
+~~~json
 {
   "API_KEY": "API_KEY_QA"
 }
@@ -50,7 +50,7 @@ provider:
 
 7. Privatizamos el endpoint habilitando en el archivo **serverless.yml** el evento de nuestra función como privado:
 
-~~~
+~~~yml
 functions:
   hello:
     handler: handler.hello
